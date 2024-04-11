@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:farmers/controllers/authentication.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(LoginApp());
@@ -7,10 +11,14 @@ void main() {
 class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    var sizewidth = MediaQuery.of(context).size.width;
+    var sizeheight = MediaQuery.of(context).size.height;
+
+    return GetMaterialApp(
+      //using getmaterial app instead of materialapp
       title: 'Login App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginPage(),
@@ -24,36 +32,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
-  void _login() {
-    if (_formKey.currentState!.validate()) {
-      String username = _usernameController.text;
-      String password = _passwordController.text;
-      // Perform login logic here (e.g., validate credentials, navigate to next screen)
-      print('Logging in with username: $username, password: $password');
-    }
-  }
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthenticationController _authenticationController =
+      Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ingia'),
+        title: const Text('Login Account'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Jina'),
+                decoration: const InputDecoration(labelText: 'Jina'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Tafadhali andika jina';
@@ -61,10 +61,10 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Nywila'),
+                decoration: const InputDecoration(labelText: 'Nywila'),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -73,15 +73,40 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               ElevatedButton(
-                onPressed: _login,
-                child: Text('Ingia'),
+                onPressed: () async {
+                  await _authenticationController.login(
+                    username: _usernameController.text.trim(),
+                    password: _passwordController.text.trim(),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
+                child: Obx(() {
+                  return _authenticationController.isLoading.value
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : const Text('Ingia');
+                }),
               ),
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               ElevatedButton(
-                onPressed: _login,
-                child: Text('Sina Akaounti'),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Kurasa yakusajili bado'),
+                      duration: Duration(seconds: 2),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor:
+                          Colors.green, // Adjust duration as needed
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
+                child: const Text('Sina Akaounti'),
               ),
             ],
           ),
