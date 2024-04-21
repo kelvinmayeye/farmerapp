@@ -1,4 +1,6 @@
 import 'package:farmers/pages/customer/orders_page.dart';
+import 'package:farmers/pages/login_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -18,19 +20,19 @@ class ProfilePage extends StatelessWidget {
               child: const CircleAvatar(
                 radius: 60,
                 foregroundImage: NetworkImage(
-                    'https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3386&q=80'),
+                    'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3.jpg'),
               ),
             ),
           ),
           Center(
             child: Text(
-              "Jessi Williams",
+              "Joana Mhekela",
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
           Center(
             child: Text(
-              "jessiwills@gmail.com",
+              "test@test.com",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -47,14 +49,17 @@ class ProfilePage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text("About us"),
-            leading: const Icon(IconlyLight.infoSquare),
+            title: const Text("My Cart"),
+            leading: const Icon(IconlyLight.chart),
             onTap: () {},
           ),
           ListTile(
             title: const Text("Logout"),
             leading: const Icon(IconlyLight.logout),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  CupertinoPageRoute(builder: (context) => LoginPage()));
+            },
           ),
         ],
       ),

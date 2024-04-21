@@ -1,3 +1,5 @@
+import 'package:farmers/pages/register_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:farmers/controllers/authentication.dart';
 import 'package:get/get.dart';
@@ -16,7 +18,7 @@ class LoginApp extends StatelessWidget {
 
     return GetMaterialApp(
       //using getmaterial app instead of materialapp
-      title: 'Login App',
+      title: 'Login',
       theme: ThemeData(
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -94,15 +96,8 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Kurasa yakusajili bado'),
-                      duration: Duration(seconds: 2),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor:
-                          Colors.green, // Adjust duration as needed
-                    ),
-                  );
+                  Navigator.of(context).pushReplacement(
+                      CupertinoPageRoute(builder: (context) => RegisterPage()));
                 },
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),

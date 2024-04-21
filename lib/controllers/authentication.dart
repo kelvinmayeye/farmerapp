@@ -19,6 +19,7 @@ class AuthenticationController extends GetxController {
     required String username,
     required String email,
     required String password,
+    required String role,
   }) async {
     try {
       isLoading.value = true;
@@ -27,6 +28,7 @@ class AuthenticationController extends GetxController {
         'username': username,
         'email': email,
         'password': password,
+        'role': role,
       };
 
       var response = await http.post(
@@ -56,7 +58,7 @@ class AuthenticationController extends GetxController {
     } catch (e) {
       isLoading.value = false;
 
-      // print(e.toString());
+      print(e.toString());
     }
   }
 
