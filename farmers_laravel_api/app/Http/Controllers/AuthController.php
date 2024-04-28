@@ -6,6 +6,7 @@ use App\Models\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -18,13 +19,14 @@ class AuthController extends Controller
         $user = User::where('username',$loginUserData['username'])->first();
         if(!$user || !Hash::check($loginUserData['password'],$user->password)){
             return response()->json([
-                'message' => 'Invalid Credentials'
+                'message' => 'Wrong Username or Password'
             ],401);
         }
         $token = $user->createToken($user->name.'-AuthToken')->plainTextToken;
-        return response()->json([
-            'access_token' => $token,
-        ]);
+        return response([
+            'user' => $user,
+            'token' => $token
+        ], 200);
     }
 
     public function register(Request $request){
@@ -44,6 +46,7 @@ class AuthController extends Controller
     }
 
     public function logout(){
+        Log::info("tried to logout");
         auth()->user()->tokens()->delete();
 
         return response()->json([
