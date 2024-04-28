@@ -2,10 +2,14 @@ import 'package:farmers/pages/customer/orders_page.dart';
 import 'package:farmers/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:farmers/controllers/authentication.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final AuthenticationController _authenticationController =
+      AuthenticationController();
+  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,7 @@ class ProfilePage extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.primary,
               child: const CircleAvatar(
                 radius: 60,
-                foregroundImage: NetworkImage(
-                    'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3.jpg'),
+                backgroundImage: AssetImage('assets/fruit.jpg'),
               ),
             ),
           ),
@@ -56,9 +59,18 @@ class ProfilePage extends StatelessWidget {
           ListTile(
             title: const Text("Logout"),
             leading: const Icon(IconlyLight.logout),
-            onTap: () {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) => LoginPage()));
+            onTap: () async {
+              Fluttertoast.showToast(
+                  msg: "Bye see you soon",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 3,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+
+              await Future.delayed(Duration(seconds: 1));
+              await _authenticationController.logout();
             },
           ),
         ],

@@ -83,24 +83,45 @@ class AuthenticationController extends GetxController {
 
       if (response.statusCode == 200) {
         isLoading.value = false;
+        // print('responce from api: ' + response.body);
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
         Get.offAll(() => const HomePage());
       } else {
         isLoading.value = false;
         Get.snackbar(
-          'Error',
+          'Failed',
           json.decode(response.body)['message'],
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
-        print(json.decode(response.body));
+        // print('responce from api: ' + response.body);
       }
     } catch (e) {
       isLoading.value = false;
+      print('Exception details:\n $e');
+    }
+  }
 
-      print(e.toString());
+  Future logout() async {
+    try {
+      isLoading.value = true;
+      var response = await http.get(Uri.parse('${url}logout'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        Get.offAll(() => LoginPage());
+        //todo: return msg to user
+      } else {
+        isLoading.value = false;
+        // print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print('Exception details:\n $e');
     }
   }
 }

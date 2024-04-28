@@ -42,7 +42,6 @@ class _RegisterPageState extends State<RegisterPage> {
       Get.put(AuthenticationController());
 
   @override
-
   final List<String> roleItems = [
     'Farmer',
     'Customer',
@@ -132,24 +131,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _phoneNumberController,
-                  decoration: const InputDecoration(labelText: 'Phone Number'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter phone number';
-                    }
-                    // Add phone number format validation if needed
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                TextFormField(
                   controller: _passwordController,
                   decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter password';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration:
+                      const InputDecoration(labelText: 'Confirm Password'),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'confirm password';
                     }
                     return null;
                   },
