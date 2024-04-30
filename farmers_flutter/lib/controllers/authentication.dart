@@ -20,6 +20,7 @@ class AuthenticationController extends GetxController {
     required String email,
     required String password,
     required String role,
+    required String confirmPassword,
   }) async {
     try {
       isLoading.value = true;
@@ -28,7 +29,7 @@ class AuthenticationController extends GetxController {
         'username': username,
         'email': email,
         'password': password,
-        'role': role,
+        'role': role,// todo: add confirm password
       };
 
       var response = await http.post(

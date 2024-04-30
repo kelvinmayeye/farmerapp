@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:farmers/controllers/authentication.dart';
 import 'package:get/get.dart';
+import 'package:connectivity/connectivity.dart';
 
 void main() {
   runApp(LoginApp());
@@ -76,6 +77,18 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () async {
+                  // Check for internet connectivity first
+                  var connectivityResult =
+                      await Connectivity().checkConnectivity();
+                  if (connectivityResult == ConnectivityResult.none) {
+                    // No internet connection, show a message or take appropriate action
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('No internet connection')),
+                    );
+                    return;
+                  }
+
+                  // Internet connection available, proceed with login
                   await _authenticationController.login(
                     username: _usernameController.text.trim(),
                     password: _passwordController.text.trim(),
@@ -88,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       ? const CircularProgressIndicator(
                           color: Colors.white,
                         )
-                      : const Text('Ingia');
+                      : const Text('Login');
                 }),
               ),
               const SizedBox(height: 24.0),
@@ -99,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
-                child: const Text('Sina Akaounti'),
+                child: const Text('Register account'),
               ),
             ],
           ),

@@ -33,18 +33,23 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  String? selectedRole;
   DateTime dob = DateTime(2022, 12, 1);
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _roleController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneNumberController = TextEditingController();
+  // final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
 
   @override
   final List<String> roleItems = [
-    'Farmer',
-    'Customer',
+    'farmer',
+    'customer',
   ];
   String? selectedValue;
   @override
@@ -72,6 +77,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: _usernameController,
+                  decoration: const InputDecoration(labelText: 'Username'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16.0),
                 DropdownButtonFormField2<String>(
                   isExpanded: true,
                   decoration: const InputDecoration(labelText: 'Select Role'),
@@ -93,7 +109,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                   onChanged: (value) {
-                    //Do something when selected item is changed.
+                    setState(() {
+                      selectedRole = value;
+                    });
                   },
                   onSaved: (value) {
                     selectedValue = value.toString();
@@ -143,7 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _passwordController,
+                  controller: _confirmPasswordController,
                   decoration:
                       const InputDecoration(labelText: 'Confirm Password'),
                   obscureText: true,
@@ -157,12 +175,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 24.0),
                 ElevatedButton(
                   onPressed: () async {
+                    // Check if role is selected
+                    if (selectedRole == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Please select a role.')),
+                      );
+                      return;
+                    }
                     await _authenticationController.register(
                       name: _nameController.text.trim(),
-                      username: _nameController.text.trim(),
-                      email: _nameController.text.trim(),
-                      password: _nameController.text.trim(),
-                      role: _nameController.text.trim(),
+                      username: _usernameController.text.trim(),
+                      email: _emailController.text.trim(),
+                      password: _passwordController.text.trim(),
+                      confirmPassword: _confirmPasswordController.text.trim(),
+                      role: selectedRole!,
                     );
                   },
                   style: ElevatedButton.styleFrom(
