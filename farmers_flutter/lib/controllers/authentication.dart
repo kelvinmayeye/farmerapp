@@ -29,7 +29,8 @@ class AuthenticationController extends GetxController {
         'username': username,
         'email': email,
         'password': password,
-        'role': role,// todo: add confirm password
+        'password_confirmation': confirmPassword,
+        'role': role,
       };
 
       var response = await http.post(
@@ -40,11 +41,16 @@ class AuthenticationController extends GetxController {
         body: data,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         isLoading.value = false;
-        token.value = json.decode(response.body)['token'];
-        box.write('token', token.value);
         Get.offAll(() => LoginPage());
+        Get.snackbar(
+          'Success',
+          json.decode(response.body)['message'],
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -54,12 +60,11 @@ class AuthenticationController extends GetxController {
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
-        print(json.decode(response.body));
+        // print('responce from api: ' + response.body);
       }
     } catch (e) {
       isLoading.value = false;
-
-      print(e.toString());
+      print('Exception details:\n $e');
     }
   }
 
@@ -108,14 +113,22 @@ class AuthenticationController extends GetxController {
   Future logout() async {
     try {
       isLoading.value = true;
-      var response = await http.get(Uri.parse('${url}logout'), headers: {
+      var response = await http.post(Uri.parse('${url}logout'), headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${box.read('token')}',
       });
       if (response.statusCode == 200) {
         isLoading.value = false;
-        Get.offAll(() => LoginPage());
+        Get.offAllNamed('/login');
         //todo: return msg to user
+        Get.snackbar(
+          'Success',
+          "Logout successful",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          icon: const Icon(Icons.check),
+        );
       } else {
         isLoading.value = false;
         // print(json.decode(response.body));

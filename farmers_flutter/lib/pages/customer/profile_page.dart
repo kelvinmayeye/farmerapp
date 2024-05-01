@@ -61,15 +61,14 @@ class ProfilePage extends StatelessWidget {
             leading: const Icon(IconlyLight.logout),
             onTap: () async {
               Fluttertoast.showToast(
-                  msg: "Bye see you soon",
+                  msg: "Logining out see you soon",
                   toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
+                  gravity: ToastGravity.BOTTOM_RIGHT,
                   timeInSecForIosWeb: 3,
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0);
-
-              await Future.delayed(Duration(seconds: 1));
+              await Future.delayed(const Duration(seconds: 1));
               await _authenticationController.logout();
             },
           ),

@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (connectivityResult == ConnectivityResult.none) {
                     // No internet connection, show a message or take appropriate action
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('No internet connection')),
+                      const SnackBar(content: Text('No internet connection')),
                     );
                     return;
                   }

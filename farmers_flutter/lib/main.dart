@@ -1,3 +1,5 @@
+import 'package:farmers/pages/customer/home_page.dart';
+import 'package:farmers/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -24,8 +26,13 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.nunitoTextTheme(),
       ),
-      home: const OnboardingPage(),
+      initialRoute:
+          token != null ? '/home' : '/', // Set initial route based on token
+      getPages: [
+        GetPage(name: '/', page: () => const OnboardingPage()),
+        GetPage(name: '/login', page: () => LoginPage()),
+        GetPage(name: '/home', page: () => const HomePage()),
+      ],
     );
   }
 }
-
