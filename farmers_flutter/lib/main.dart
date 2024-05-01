@@ -1,4 +1,5 @@
 import 'package:farmers/pages/customer/home_page.dart';
+import 'package:farmers/pages/farmers/dashboard_page.dart';
 import 'package:farmers/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final box = GetStorage();
     final token = box.read('token');
+    final username = box.read('username');
     return GetMaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
@@ -31,7 +33,8 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const OnboardingPage()),
         GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/home', page: () => const HomePage()),
+        GetPage( name: '/home', page: () => HomePage( userName: username)),
+        GetPage( name: '/farmerdashboard', page: () => DashboardPage( userName: username)),
       ],
     );
   }

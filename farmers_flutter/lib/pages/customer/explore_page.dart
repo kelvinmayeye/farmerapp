@@ -1,7 +1,7 @@
 import 'package:farmers/data/products.dart';
 import 'package:farmers/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
@@ -12,41 +12,6 @@ class ExplorePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Search here...",
-                      isDense: true,
-                      contentPadding: const EdgeInsets.all(12.0),
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(99),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(99),
-                        ),
-                      ),
-                      prefixIcon: const Icon(IconlyLight.search),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: IconButton.filled(onPressed: () {}, icon: const Icon(IconlyLight.filter)),
-                ),
-              ],
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 25),
             child: SizedBox(
@@ -66,14 +31,28 @@ class ExplorePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Free consultation",
-                              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              "Free support",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
                                     color: Colors.green.shade700,
                                   ),
                             ),
-                            const Text("Get free support from our customer service"),
+                            const Text(
+                                "Get free support from our customer service"),
                             FilledButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                var url = Uri.parse("tel://+255716033316");
+                                if (await canLaunchUrl(url)) {
+                                  await launchUrl(url);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Could not launch call')),
+                                  );
+                                }
+                              },
                               child: const Text("Call now"),
                             ),
                           ],
@@ -93,7 +72,7 @@ class ExplorePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Featured Products",
+                "Available Products",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               TextButton(
