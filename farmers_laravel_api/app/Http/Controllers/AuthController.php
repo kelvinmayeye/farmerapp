@@ -22,7 +22,8 @@ class AuthController extends Controller
             return response()->json([ 'message' => 'Wrong Username or Password'], 401);
         }
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
-        return response(['user' => $user,'token' => $token], 200);
+       // Log::info(response(['userdata' => $user,'username'=>$user->username,'token' => $token], 200));
+        return response(['userdata' => $user,'username'=>$user->username,'token' => $token], 200);
     }
 
     public function register(Request $request)
