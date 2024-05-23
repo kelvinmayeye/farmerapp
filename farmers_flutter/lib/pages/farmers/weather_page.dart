@@ -16,7 +16,7 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
     super.initState();
-    _wf.currentWeatherByCityName("Kigoma").then((w) => {
+    _wf.currentWeatherByCityName("Morogoro").then((w) => {
           setState(() {
             _weather = w;
           })
