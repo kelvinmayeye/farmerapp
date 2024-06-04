@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     var size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Account'),
+        title: const Text('Karibu FarmersApp'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,24 +55,12 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: _usernameController,
                 decoration: const InputDecoration(labelText: 'Jina'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Tafadhali andika jina';
-                  }
-                  return null;
-                },
               ),
               const SizedBox(height: 16.0),
               TextFormField(
                 controller: _passwordController,
-                decoration: const InputDecoration(labelText: 'Nywila'),
+                decoration: const InputDecoration(labelText: 'Neno la siri'),
                 obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Tafadhali weka nywila';
-                  }
-                  return null;
-                },
               ),
               const SizedBox(height: 24.0),
               ElevatedButton(
@@ -83,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (connectivityResult == ConnectivityResult.none) {
                     // No internet connection, show a message or take appropriate action
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('No internet connection')),
+                      const SnackBar(content: Text('Hakuna interneti')),
                     );
                     return;
                   }
@@ -101,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                       ? const CircularProgressIndicator(
                           color: Colors.white,
                         )
-                      : const Text('Login');
+                      : const Text('Ingia');
                 }),
               ),
               const SizedBox(height: 24.0),
@@ -112,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
-                child: const Text('Register account'),
+                child: const Text('Sajili akaunti'),
               ),
             ],
           ),

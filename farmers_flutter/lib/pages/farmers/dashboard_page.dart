@@ -5,6 +5,7 @@ import 'package:farmers/pages/farmers/weather_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
+// ignore: must_be_immutable
 class DashboardPage extends StatefulWidget {
   String userName;
   DashboardPage({super.key, required this.userName});
@@ -58,22 +59,22 @@ class _DashboardPageState extends State<DashboardPage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
-            label: "Home",
+            label: "Nyumbani",
             activeIcon: Icon(IconlyBold.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_outlined),
-            label: "Products",
+            label: "Bidhaa",
             activeIcon: Icon(Icons.shopping_bag),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
-            label: "Orders",
+            label: "Odaa",
             activeIcon: Icon(IconlyBold.buy),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.profile),
-            label: "Profile",
+            label: "Profaili",
             activeIcon: Icon(IconlyBold.profile),
           ),
         ],

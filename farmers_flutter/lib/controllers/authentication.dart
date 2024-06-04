@@ -110,7 +110,7 @@ class AuthenticationController extends GetxController {
         userdata['role'] == 'farmer'
             ? Get.offAll(() => DashboardPage(userName: username))
             : Get.offAll(() => HomePage(userName: username));
-        print(username);
+        // print(username);
       } else {
         isLoading.value = false;
         Get.snackbar(
