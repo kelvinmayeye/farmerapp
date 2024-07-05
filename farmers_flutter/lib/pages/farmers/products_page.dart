@@ -60,7 +60,7 @@ class ProductsPage extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         onPressed: () {
           Navigator.of(context).pushReplacement(
-                      CupertinoPageRoute(builder: (context) => const AddProductPage()));
+              CupertinoPageRoute(builder: (context) => const AddProductPage()));
         },
         label: const Text('Product'),
         icon: const Icon(Icons.add, color: Colors.white, size: 25),

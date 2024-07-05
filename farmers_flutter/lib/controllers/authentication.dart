@@ -105,7 +105,7 @@ class AuthenticationController extends GetxController {
             'username': userDataJson['username'] ?? '',
             'role': userDataJson['role'] ?? '',
           };
-        box.write('name', userdata['name']);
+          box.write('name', userdata['name']);
         }
         userdata['role'] == 'farmer'
             ? Get.offAll(() => DashboardPage(userName: username))

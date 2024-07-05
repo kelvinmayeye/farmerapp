@@ -16,7 +16,7 @@ class ProductController extends GetxController {
 
   Future addProduct({
     required String name,
-    required Int quatity,
+    required String quatity,
     required String price,
     required String location,
     required Int farmerId,
@@ -42,7 +42,7 @@ class ProductController extends GetxController {
 
       if (response.statusCode == 200) {
         isLoading.value = false;
-        Get.offAll(() => ProductsPage());
+        Get.offAll(() => const ProductsPage());
         Get.snackbar(
           'Success',
           json.decode(response.body)['message'],
@@ -63,7 +63,7 @@ class ProductController extends GetxController {
       }
     } catch (e) {
       isLoading.value = false;
-      print('Exception details:\n $e');
+      // print('Exception details:\n $e');
     }
   }
 

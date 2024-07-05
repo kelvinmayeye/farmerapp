@@ -40,7 +40,7 @@ class _DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello ${widget.userName} 👋🏾",
+              "Habari ${widget.userName} 👋🏾",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text("Farmer", style: Theme.of(context).textTheme.bodySmall)

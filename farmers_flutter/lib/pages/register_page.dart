@@ -17,7 +17,7 @@ class RegisterApp extends StatelessWidget {
     var sizeheight = MediaQuery.of(context).size.height;
 
     return GetMaterialApp(
-      title: 'Register Account',
+      title: 'Sajili Akaunti',
       theme: ThemeData(
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register Account'),
+        title: const Text('Sajili akaunti'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,10 +68,10 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 TextFormField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Name'),
+                  decoration: const InputDecoration(labelText: 'jina kamili'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
+                      return 'Tafadhali weka jina';
                     }
                     return null;
                   },
@@ -79,10 +79,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _usernameController,
-                  decoration: const InputDecoration(labelText: 'Username'),
+                  decoration: const InputDecoration(labelText: 'jinatumizi'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your username';
+                      return 'Tafadhali weka jina tumizi';
                     }
                     return null;
                   },
@@ -90,7 +90,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16.0),
                 DropdownButtonFormField2<String>(
                   isExpanded: true,
-                  decoration: const InputDecoration(labelText: 'Select Role'),
+                  decoration: const InputDecoration(
+                      labelText: 'changua aina ya mtumiaji'),
                   items: roleItems
                       .map((item) => DropdownMenuItem<String>(
                             value: item,
@@ -104,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       .toList(),
                   validator: (value) {
                     if (value == null) {
-                      return 'Please select role.';
+                      return 'Tafadhali chagua aina ya mtumiaji';
                     }
                     return null;
                   },
@@ -138,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'barua pepe'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter email';
@@ -150,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'neno la siri'),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -163,7 +164,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFormField(
                   controller: _confirmPasswordController,
                   decoration:
-                      const InputDecoration(labelText: 'Confirm Password'),
+                      const InputDecoration(labelText: 'hakiki neno la siri'),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -178,7 +179,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     // Check if role is selected
                     if (selectedRole == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please select a role.')),
+                        const SnackBar(
+                            content: Text('Tafadhali chagua aina ya mtumiaji')),
                       );
                       return;
                     }
@@ -193,7 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
-                  child: const Text('Register'),
+                  child: const Text('Sajili'),
                 ),
                 const SizedBox(height: 24.0),
                 ElevatedButton(
@@ -203,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(20, 14, 20, 14)),
-                  child: const Text('login'),
+                  child: const Text('Ingia'),
                 ),
               ],
             ),
