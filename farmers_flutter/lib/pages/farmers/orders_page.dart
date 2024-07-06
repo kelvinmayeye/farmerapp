@@ -1,3 +1,4 @@
+import 'package:farmers/data/products.dart';
 import 'package:farmers/pages/data/products.dart';
 import 'package:farmers/widgets/cart_item.dart';
 import 'package:flutter/material.dart';

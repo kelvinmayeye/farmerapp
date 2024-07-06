@@ -13,7 +13,6 @@ class ProductController extends GetxController {
   final isLoading = false.obs;
   final box = GetStorage();
 
-
   Future addProduct({
     required String name,
     required String quatity,
@@ -22,13 +21,14 @@ class ProductController extends GetxController {
     required Int farmerId,
   }) async {
     try {
+      //Todo: Function was destroyed a bit need fixing and testing
       isLoading.value = true;
       var data = {
         'product_name': name,
         'quantity': quatity,
         'price': price,
         'location': location,
-        'farmer_id': farmerId,
+        'username': box.read('username'),
       };
 
       var response = await http.post(
@@ -42,7 +42,7 @@ class ProductController extends GetxController {
 
       if (response.statusCode == 200) {
         isLoading.value = false;
-        Get.offAll(() => const ProductsPage());
+        Get.offAll(() => ProductsPage());
         Get.snackbar(
           'Success',
           json.decode(response.body)['message'],
@@ -66,5 +66,4 @@ class ProductController extends GetxController {
       // print('Exception details:\n $e');
     }
   }
-
 }

@@ -17,7 +17,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final pages = [
     const WeatherPage(),
-    const ProductsPage(),
+    ProductsPage(),
     const OrdersPage(),
     ProfilePage()
   ];
