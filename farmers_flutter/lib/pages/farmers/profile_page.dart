@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:farmers/controllers/authentication.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:get_storage/get_storage.dart';
 
 class ProfilePage extends StatelessWidget {
   final AuthenticationController _authenticationController =
       AuthenticationController();
   ProfilePage({super.key});
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,13 @@ class ProfilePage extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Joana Mhekela",
+              '${box.read('name')}',
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
           Center(
             child: Text(
-              "test@test.com",
+              '${box.read('')}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),

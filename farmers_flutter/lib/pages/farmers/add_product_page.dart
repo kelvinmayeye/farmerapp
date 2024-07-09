@@ -66,6 +66,7 @@ class ProductController extends GetxController {
     }
   }
 }
+
 // Todo add kipimo (kg,gunia,gramu,vipande)
 class AddProductPage extends StatefulWidget {
   const AddProductPage({super.key});

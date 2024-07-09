@@ -31,7 +31,7 @@ class ExplorePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Free support",
+                              "Msaada wa bure",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
@@ -40,7 +40,7 @@ class ExplorePage extends StatelessWidget {
                                   ),
                             ),
                             const Text(
-                                "Get free support from our customer service"),
+                                "Pata usaidizi bila malipo kutoka kwa huduma yetu kwa wateja."),
                             FilledButton(
                               onPressed: () async {
                                 var url = Uri.parse("tel://+255716033316");
@@ -53,7 +53,7 @@ class ExplorePage extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: const Text("Call now"),
+                              child: const Text("Piga sasa"),
                             ),
                           ],
                         ),
@@ -72,12 +72,12 @@ class ExplorePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Available Products",
+                "Bidhaa Zinazopatikana",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text("See all"),
+                child: const Text("Ona zote"),
               ),
             ],
           ),

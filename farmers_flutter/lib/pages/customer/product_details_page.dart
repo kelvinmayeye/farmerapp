@@ -38,7 +38,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Details"),
+        title: const Text("Maelezo"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -70,7 +70,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Available in stock",
+                "Inapatikana katika stoo",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -133,7 +133,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             ],
           ),
           const SizedBox(height: 20),
-          Text("Description",
+          Text("Maelezo",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -150,7 +150,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 TextSpan(
                   recognizer: readMoreGestureRecognizer,
-                  text: showMore ? " Read less" : " Read more",
+                  text: showMore ? " Soma kidogo" : " Soma zaidi",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),

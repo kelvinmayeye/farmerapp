@@ -20,7 +20,7 @@ class OrderDetailsPage extends StatelessWidget {
     int activeStep = 2;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order Details"),
+        title: const Text("Maelezo ya oda"),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -74,7 +74,7 @@ class OrderDetailsPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Order: ${order.id}",
+                        "Oda: ${order.id}",
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -98,7 +98,7 @@ class OrderDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Delivery estimate"),
+                      const Text("Kadirio la uwasilishaji"),
                       Text(
                         order.date.deliveryDate,
                         style: const TextStyle(
@@ -141,7 +141,7 @@ class OrderDetailsPage extends StatelessWidget {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Payment method"),
+                      Text("Njia ya malipo"),
                       Text(
                         "Credit Card **1234",
                         style: TextStyle(fontWeight: FontWeight.bold),

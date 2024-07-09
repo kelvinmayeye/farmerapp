@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     final box = GetStorage();
     final token = box.read('token');
     final username = box.read('username');
+    final name = box.read('name');
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

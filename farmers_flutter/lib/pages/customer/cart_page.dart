@@ -36,7 +36,7 @@ class _CartPageState extends State<CartPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Total (${cartItems.length} items)"),
+                Text("Jumla (${cartItems.length} Bidhaa)"),
                 Text(
                   "\$$total",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -51,7 +51,7 @@ class _CartPageState extends State<CartPage> {
               width: double.infinity,
               child: FilledButton.icon(
                 onPressed: () {},
-                label: const Text("Proceed to Checkout"),
+                label: const Text("Nenda mbele"),
                 icon: const Icon(IconlyBold.arrowRight),
               ),
             )

@@ -1,15 +1,15 @@
 import 'package:farmers/pages/customer/orders_page.dart';
-import 'package:farmers/pages/login_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:farmers/controllers/authentication.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ProfilePage extends StatelessWidget {
   final AuthenticationController _authenticationController =
       AuthenticationController();
   ProfilePage({super.key});
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,19 @@ class ProfilePage extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Joana Mhekela",
+              '${box.read('name')}',
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
           Center(
             child: Text(
-              "test@test.com",
+              "",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
           const SizedBox(height: 25),
           ListTile(
-            title: const Text("My orders"),
+            title: const Text("Oda zangu"),
             leading: const Icon(IconlyLight.bag),
             onTap: () {
               Navigator.push(
@@ -52,16 +52,16 @@ class ProfilePage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text("My Cart"),
+            title: const Text("Kapu langu"),
             leading: const Icon(IconlyLight.chart),
             onTap: () {},
           ),
           ListTile(
-            title: const Text("Logout"),
+            title: const Text("Ondoka"),
             leading: const Icon(IconlyLight.logout),
             onTap: () async {
               Fluttertoast.showToast(
-                  msg: "Logining out see you soon",
+                  msg: "Kwaheri karibu tena",
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM_RIGHT,
                   timeInSecForIosWeb: 3,

@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hi ${widget.userName} 👋🏾",
+              "Habari ${widget.userName} 👋🏾",
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            Text("Get farm products easy",
+            Text("Pata bidhaa za kilimo kwa urahisi",
                 style: Theme.of(context).textTheme.bodySmall)
           ],
         ),
@@ -61,22 +61,22 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
-            label: "Home",
+            label: "Nyumbani",
             activeIcon: Icon(IconlyBold.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_outlined),
-            label: "Products",
+            label: "Bidhaa",
             activeIcon: Icon(Icons.shopping_bag),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
-            label: "Cart",
+            label: "Kapu",
             activeIcon: Icon(IconlyBold.buy),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.profile),
-            label: "Profile",
+            label: "Profaili",
             activeIcon: Icon(IconlyBold.profile),
           ),
         ],
