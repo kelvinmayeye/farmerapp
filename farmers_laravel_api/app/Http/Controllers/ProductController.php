@@ -37,8 +37,7 @@ class ProductController extends Controller
     }
 
     public function getProducts(Request $request){
-        \Log::error($request);
-        try {
+        \Log::error($request);        try {
 
             $metaData = $request->validate([
                 'username' => 'required|string',
