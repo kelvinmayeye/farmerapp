@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:farmers/controllers/authentication.dart';
 import 'package:get/get.dart';
 import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 
 void main() {
   runApp(LoginApp());
